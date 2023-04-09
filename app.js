@@ -208,9 +208,20 @@ function radioHandler(radio){
 function updateClassListDiv(){
   classListDiv.innerHTML = 'Playground classes: ' + playground.classList.toString().replaceAll('w-8/12', '').replaceAll('overflow-hidden', '')
 }
+function logClasses(){
+  // console log all tailwindcss class names used in this document.
+  let classList = ['flex-row', 'flex-row-reverse', 'flex-col', 'flex-col-reverse', 'justify-start', 'justify-end', 'justify-center', 'justify-between', 'justify-around', 'justify-evenly', 'flex-wrap', 'flex-wrap-reverse', 'flex-nowrap', 'items-start', 'items-end', 'items-center', 'items-baseline', 'items-stretch', 'bg-blue-500', 'bg-yellow-500', 'bg-indigo-500', 'bg-red-500', 'bg-gray-400', 'bg-pink-400', 'px-6', 'px-8', 'px-10', 'px-12', 'py-8', 'py-12', 'py-16', 'py-24']
+  document.querySelectorAll('*').forEach((element) => {
+    element.classList.forEach((className) => {
+      if (!classList.includes(className)) classList.push(className)
+    })
+  })
+  console.log(classList.sort().join('\n'))
+}
 
 function runTheApp() {
   document.getElementById('wrapper').appendChild(app)
 }
 
 document.addEventListener('DOMContentLoaded', runTheApp, false)
+
